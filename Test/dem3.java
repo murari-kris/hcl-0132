@@ -1,6 +1,6 @@
 package Test;
 
- public class demo {
+ public class dem3 {
 
     private String name;
     private int age;

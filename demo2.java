@@ -3,7 +3,7 @@ package Test;
 public class demo2 {
 
     public static void main(String args[]){
-        demo obj=new demo();
+        dem3 obj=new dem3();
         obj.setName("krishna");
         obj.setAge(30);
 
