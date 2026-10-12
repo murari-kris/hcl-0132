@@ -1,5 +1,6 @@
+package FunctionalInterface;
 
- interface animal{
+interface animal{
     static void sound(){
         System.out.print("cat dark");
     }

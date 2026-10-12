@@ -54,7 +54,7 @@ public class Test1 {
 
     public static void main(String args[]){
 
-        ArrayList<Student> list=new ArrayList<>();
+        ArrayList<Student> list=new ArrayList<>(10);
 
         list.add(new Student("krishna", 2, 17, 90));
         list.add(new Student("mukesh", 3, 15, 27));
@@ -66,6 +66,9 @@ public class Test1 {
         list.add(new Student("neha", 9, 17, 88));
         list.add(new Student("vishal", 10, 18, 72));
         list.add(new Student("anjali", 11, 16, 95));
+
+
+        System.out.println(list.toString());
 
         Collections.sort(list, new RollComparator());
         System.out.println(list.toString());
