@@ -24,6 +24,32 @@ class Student{
     }
 }
 
+
+
+class RollComparator implements Comparator<Student> {
+
+    @Override
+    public int compare(Student s1, Student s2) {
+        return Integer.compare(s1.rollno, s2.rollno);
+    }
+}
+
+class AgeComparator implements Comparator<Student> {
+
+    @Override
+    public int compare(Student s1, Student s2) {
+        return Integer.compare(s1.age, s2.age);
+    }
+}
+
+class MarksComparator implements Comparator<Student> {
+
+    @Override
+    public int compare(Student s1, Student s2) {
+        return Integer.compare(s1.marks, s2.marks);
+    }
+}
+
 public class Test1 {
 
     public static void main(String args[]){
@@ -41,13 +67,13 @@ public class Test1 {
         list.add(new Student("vishal", 10, 18, 72));
         list.add(new Student("anjali", 11, 16, 95));
 
-        Collections.sort(list, (s1, s2) -> s1.age - s2.age);
-
+        Collections.sort(list, new RollComparator());
         System.out.println(list.toString());
-        Collections.sort(list, (s1, s2) -> s1.rollno - s2.rollno);
-        System.out.println(list.toString());
-        Collections.sort(list, (s1, s2) -> s1.marks - s2.marks);
 
+        Collections.sort(list, new AgeComparator());
+        System.out.println(list.toString());
+
+        Collections.sort(list, new MarksComparator());
         System.out.print(list.toString());
 
 
