@@ -5,7 +5,7 @@ public class throwandthrowsExample {
     public static void checkAge(int age) throws Exception{
 
         if(age<18){
-            throw new Exception("age must be 18 year old");
+            throw new Exception("age must be 18 year old or greater than 18 year old");
         }
         System.out.println("Eligible");
     }
