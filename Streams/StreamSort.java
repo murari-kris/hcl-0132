@@ -2,6 +2,8 @@ package Streams;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 class empl{
     String name;
@@ -10,6 +12,14 @@ class empl{
     public empl(String name, int id){
         this.name=name;
         this.id=id;
+    }
+
+    @Override
+    public String toString() {
+        return "empl{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
 public class StreamSort {
@@ -24,8 +34,15 @@ public class StreamSort {
         list.add(new empl("nikil",5));
         list.add(new empl("nirak",4));
 
-        //list.stream()
-               // .sort();
+        List<empl> ans=list.stream()
+               .sorted((e1,e2)->Integer.compare(e1.id,e2.id))
+                .collect(Collectors.toList());
+
+        System.out.println(ans);
+
+        list.stream()
+               .sorted((e1,e2)->Integer.compare(e1.id,e2.id));
+        System.out.println(list);
 
     }
 }
