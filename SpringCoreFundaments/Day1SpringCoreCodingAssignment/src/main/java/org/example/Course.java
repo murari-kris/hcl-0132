@@ -50,6 +50,7 @@ public class Course {
     @Override
     public String toString() {
         return "Course ID: " + courseId +
-                "\nCourse Name: " + courseName;
+                "\nCourse Name: " + courseName +
+                "\nDuration Month: " + durationMonths;
     }
 }
