@@ -9,6 +9,9 @@ public class Main {
         ApplicationContext context=new AnnotationConfigApplicationContext(AppConfig.class);
 
         Employee emp=context.getBean(Employee.class);
+        Address emp1=context.getBean(Address.class);
+
+        System.out.println(emp.equals(emp1));
         emp.getAdress();
     }
 }
