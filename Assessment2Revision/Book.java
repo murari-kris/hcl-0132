@@ -1,12 +1,27 @@
 package Assessment2Revision;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Book extends LibraryItem {
 
     private String auther;
-    private int isbn;
+    private String isbn;
 
-    Book(String title, int year,String auther,int isbn) {
+
+    private static Set<String> isbnSet = new HashSet<>();
+    Book(String title, int year,String auther,String isbn) {
         super(title, year);
+
+        if (isbn == null || isbn.isBlank()) {
+            throw new IllegalArgumentException("Invalid ISBN");
+        }
+
+        if (!isbnSet.add(isbn)) {
+            throw new IllegalArgumentException(
+                    "Book with this ISBN already exists: " + isbn
+            );
+        }
         this.auther=auther;
         this.isbn=isbn;
     }

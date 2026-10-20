@@ -1,7 +1,5 @@
 package Assessment2Revision;
 
-import java.util.Date;
-
 abstract class LibraryItem  implements Borrowable{
     private int id;
     private String title;
@@ -87,5 +85,23 @@ abstract class LibraryItem  implements Borrowable{
                 ", year=" + year +
                 ", available='" + available + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj) return true;
+
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+
+        LibraryItem item = (LibraryItem) obj;
+
+        return this.id == item.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(id);
     }
 }

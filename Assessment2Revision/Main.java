@@ -10,14 +10,20 @@ public class Main {
 
         List<LibraryItem> list = new ArrayList<>();
 
-        Book book = new Book("RadheKrishna", 2024, "Krishna", 1);
+        Book b1 = new Book("Java", 2020, "Mukesh","ISBN101");
+
+        Book b2 = new Book("Python", 2022, "SuresDhan","ISBN102");
+
+
         Magzine magzine = new Magzine("Kaira", 2026, 2);
         DVD dvd = new DVD("dvdplayer", 2022, 3);
 
 
-        Book book2 = new Book("Java", 2025, "James", 4);
+        Book book2 = new Book("Java", 2025, "James", "c03");
 
-        list.add(book);
+        list.add(b1);
+        list.add(b2);
+
         list.add(magzine);
         list.add(dvd);
         list.add(book2);
@@ -40,14 +46,14 @@ public class Main {
         );
 
 
-        member.borrowItem(book);
+        member.borrowItem(b2);
         member.borrowItem(dvd);
 
         System.out.println("AFTER BORROWING ITEMS");
         System.out.println(member);
 
 
-        member.returnItem(book);
+        member.returnItem(b2);
 
         System.out.println("AFTER RETURNING BOOK");
         System.out.println(member);
@@ -100,7 +106,7 @@ public class Main {
 
         try {
 
-            member.borrowItem(book);
+            member.borrowItem(b1);
             member.borrowItem(magzine);
 
 
