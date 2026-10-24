@@ -36,4 +36,14 @@ public class EmplyeeServiceImpl {
 
         return employeeRepo.addEmpBulk(bulkList);
     }
+
+    public String deletedEmpByid(){
+        return employeeRepo.deleteById(899);
+    }
+
+
+    public String updatedEmpByid(long empid, Employee empl) {
+
+        return employeeRepo.updateById(empid, empl);
+    }
 }

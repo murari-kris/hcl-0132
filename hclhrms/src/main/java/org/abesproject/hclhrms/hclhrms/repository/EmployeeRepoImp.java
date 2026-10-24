@@ -37,12 +37,34 @@ public class EmployeeRepoImp implements EmployeeRepo{
 
     @Override
     public String deleteById(long empid) {
-        return "";
+         boolean status=false;
+        if(getEmpById(empid)!=null){
+            status=emplist.removeIf(e->e.getEmp_id()==empid);
+        }
+
+        if(status){
+            return "Employee deleted successfully";
+        }
+
+        return "Empl is not registered"+" "+empid;
     }
 
     @Override
-    public String updateById(long id, Employee updatedEmp) {
-        return "";
+    public String updateById(long empid, Employee updatedEmp) {
+
+        Employee existing = getEmpById(empid);
+
+        if (existing != null) {
+
+            existing.setEmp_name(updatedEmp.getEmp_name());
+            existing.setEmail(updatedEmp.getEmail());
+            existing.setDesignation(updatedEmp.getDesignation());
+            existing.setProgStack(updatedEmp.getProgStack());
+
+            return "Employee updated successfully";
+        }
+
+        return "Employee is not registered " + empid;
     }
 
     @Override
