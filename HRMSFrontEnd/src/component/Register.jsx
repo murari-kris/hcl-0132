@@ -1,114 +1,197 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 function Register() {
-    const[empId,setEmpId]=useState();
-    const[EmpName,setEmpName]=useState();
-    const[EmpDegination,setEmpDegination]=useState();
-    const[TechStack,setTechStack]=useState();
-    const[email,setEmail]=useState();
-    const[password,setPassword]=useState();
 
-    function sendData(){
-         alert([empId,EmpName,EmpDegination,TechStack,email,password])
+    const [empId, setEmpId] = useState("");
+    const [empName, setEmpName] = useState("");
+    const [empDesignation, setEmpDesignation] = useState("");
+    const [techStack, setTechStack] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    async function sendData(e) {
+        e.preventDefault();
+
+        const employee = {
+            id: Number(empId),
+            name: empName,
+            designation: empDesignation,
+            stack: techStack,
+            email: email,
+            password: password
+        };
+
+        try {
+            setLoading(true);
+
+            const response = await fetch(
+                "http://localhost:8080/api/user/register",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(employee)
+                }
+            );
+
+            if (response.ok) {
+                alert("Employee Registered Successfully!");
+
+                // Clear form after successful registration
+                setEmpId("");
+                setEmpName("");
+                setEmpDesignation("");
+                setTechStack("");
+                setEmail("");
+                setPassword("");
+
+            } else {
+                const message = await response.text();
+                console.log("Registration failed:", message);
+                alert("Registration Failed!");
+            }
+
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Unable to connect to Spring Boot server");
+        } finally {
+            setLoading(false);
+        }
     }
-  return (
-    <div>
-       <form>
 
-        <div className="mb-3">
-            <label className="form-label">Empid</label>
-            <input
-              type="number"
-              onChange={(e)=>setEmpId(e.target.value)}
-              className="form-control"
-              placeholder="Enter empid"
-              required
-            />
-            {empId}
-          </div>
+    return (
+        <div className="container mt-5 mb-5">
 
-          <div className="mb-3">
-            <label className="form-label">Name</label>
-            <input
-              type="text"
-               onChange={(e)=>setEmpName(e.target.value)}
-              className="form-control"
-              placeholder="Enter name"
-              required
-            />
-            {EmpName}
-          </div>
+            <div className="row justify-content-center">
+                <div className="col-md-6">
 
-          <div className="mb-3">
-            <label className="form-label">Email Address</label>
-            <input
-              type="email"
-               onChange={(e)=>setEmail(e.target.value)}
-              className="form-control"
-              placeholder="Enter email"
-              required
-            />
-            {email}
-          </div>
+                    <div className="card shadow p-4">
 
-          <div className="mb-3">
-            <label className="form-label">Degination</label>
-            <input
-              type="text"
-               onChange={(e)=>setEmpDegination(e.target.value)}
-              className="form-control"
-              placeholder="Enter Degination"
-              required
-            />
+                        <h3 className="text-center mb-4">
+                            Employee Registration
+                        </h3>
 
-            {EmpDegination}
-          </div>
+                        <form onSubmit={sendData}>
 
-          <div className="mb-3">
-            <label className="form-label">TechStack</label>
-            <input
-              type="text"
-               onChange={(e)=>setTechStack(e.target.value)}
-              className="form-control"
-              placeholder="Enter TechStack like test Engineer, java, etc"
-              required
-            />
+                            {/* Employee ID */}
+                            <div className="mb-3">
+                                <label className="form-label">
+                                    Employee ID
+                                </label>
 
-            {TechStack}
-          </div>
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="Enter Employee ID"
+                                    value={empId}
+                                    onChange={(e) => setEmpId(e.target.value)}
+                                    min="1"
+                                    required
+                                />
+                            </div>
 
-          <div className="mb-3">
-            <label className="form-label">Password</label>
-            <input
-              type="password"
-               onChange={(e)=>setPassword(e.target.value)}
-              className="form-control"
-              placeholder="Enter password"
-              required
-            />
+                            {/* Employee Name */}
+                            <div className="mb-3">
+                                <label className="form-label">
+                                    Employee Name
+                                </label>
 
-            {password}
-          </div>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Enter Employee Name"
+                                    value={empName}
+                                    onChange={(e) => setEmpName(e.target.value)}
+                                    required
+                                />
+                            </div>
 
-          <div className="mb-3 form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="remember"
-            />
-            <label className="form-check-label" htmlFor="remember">
-              Remember me
-            </label>
-          </div>
+                            {/* Email */}
+                            <div className="mb-3">
+                                <label className="form-label">
+                                    Email Address
+                                </label>
 
-          <button type="submit" className="btn btn-primary w-100" onClick={sendData}>
-            Register
-          </button>
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    placeholder="Enter Email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                            </div>
 
-        </form>
+                            {/* Designation */}
+                            <div className="mb-3">
+                                <label className="form-label">
+                                    Designation
+                                </label>
 
-    </div>
-  )
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Enter Designation"
+                                    value={empDesignation}
+                                    onChange={(e) =>
+                                        setEmpDesignation(e.target.value)
+                                    }
+                                    required
+                                />
+                            </div>
+
+                            {/* Tech Stack */}
+                            <div className="mb-3">
+                                <label className="form-label">
+                                    Tech Stack
+                                </label>
+
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Java, React, Spring Boot"
+                                    value={techStack}
+                                    onChange={(e) => setTechStack(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            {/* Password */}
+                            <div className="mb-3">
+                                <label className="form-label">
+                                    Password
+                                </label>
+
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    placeholder="Enter Password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    minLength={8}
+                                    autoComplete="new-password"
+                                    required
+                                />
+                            </div>
+
+                            {/* Submit Button */}
+                            <button
+                                type="submit"
+                                className="btn btn-primary w-100"
+                                disabled={loading}
+                            >
+                                {loading ? "Registering..." : "Register"}
+                            </button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
 
-export default Register
+export default Register;
