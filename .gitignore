@@ -1,26 +1,18 @@
-# Node.js dependencies
-node_modules/
-
-# Environment variables
-.env*
-!.env.example
-
-# Build output
+# Java / Maven
+backend/target/
 target/
-dist/
-coverage/
+.idea/
+*.iml
 
-# Logs
-*.log
-# Node.js dependencies
+# Node.js
 node_modules/
+frontend/hcl-0132/
 
 # Environment files and secrets
 .env*
 !.env.example
 
 # Build output
-target/
 dist/
 coverage/
 
