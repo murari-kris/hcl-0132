@@ -1,0 +1,28 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variables
+.env*
+!.env.example
+
+# Build output
+target/
+dist/
+coverage/
+
+# Logs
+*.log
+# Node.js dependencies
+node_modules/
+
+# Environment files and secrets
+.env*
+!.env.example
+
+# Build output
+target/
+dist/
+coverage/
+
+# Logs
+*.log
